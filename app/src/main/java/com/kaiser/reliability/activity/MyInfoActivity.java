@@ -1,6 +1,8 @@
 package com.kaiser.reliability.activity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -19,7 +21,8 @@ import java.util.TimerTask;
 public class MyInfoActivity extends BaseActivity implements View.OnClickListener{
     private CustomerPickerDialog mEducationDialog;
     private TextView tvSchool,tvSave;
-    private EditText etName,etPhone,etIDCar,etZhuAddress,etIDAddress,etMarry,etJob,etFamilyNum,etXinCar,etRecord,etWages;
+    private EditText etName,etPhone,etIDCar,etZhuAddress,etIDAddress,etFamilyNum,etXinCar,etRecord,etWages;
+    private TextView tvTitle,tvBack,etMarry,etJob;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,14 +42,17 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void initView() {
+        tvTitle = (TextView) findViewById(R.id.tvTitle);
+        tvBack = (TextView) findViewById(R.id.tvBack);
+        tvTitle.setText("我的资料");
         etName = (EditText) findViewById(R.id.etName);
         etPhone = (EditText) findViewById(R.id.etPhone);
         etIDCar = (EditText) findViewById(R.id.etIDCar);
         etIDAddress = (EditText) findViewById(R.id.etIDAddress);
         etZhuAddress = (EditText) findViewById(R.id.etZhuAddress);
-        etMarry = (EditText) findViewById(R.id.etMarry);
+        etMarry = (TextView) findViewById(R.id.etMarry);
         etWages = (EditText) findViewById(R.id.etWages);
-        etJob = (EditText) findViewById(R.id.etJob);
+        etJob = (TextView) findViewById(R.id.etJob);
         etFamilyNum = (EditText) findViewById(R.id.etFamilyNum);
         etXinCar = (EditText) findViewById(R.id.etXinCar);
         etRecord = (EditText) findViewById(R.id.etRecord);
@@ -58,7 +64,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void setOnClicks() {
+        tvBack.setOnClickListener(this);
         tvSchool.setOnClickListener(this);
+        etMarry.setOnClickListener(this);
+        etJob.setOnClickListener(this);
     }
 
 
@@ -95,56 +104,64 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         }
         mEducationDialog.show();
     }
+    private void showTrueOrFalse(View virw) {
+        if (mEducationDialog == null) {
+            final String[] strings = {"是", "否"};
+            List<String> list = Arrays.asList(strings);
+            LoopView.OnItemSelectedListener listener = new LoopView.OnItemSelectedListener() {
+                private String[] types = {"01", "02"};
+
+                @Override
+                public void onItemSelected(int position) {
+                    etMarry.setText(strings[position]);
+                }
+            };
+            mEducationDialog = new CustomerPickerDialog(virw.getContext(), list, listener);
+        }
+        mEducationDialog.show();
+    }
+
+    private void showold(View view){
+        if (mEducationDialog == null) {
+            final String[] strings = {"无","1年","2年","3年","4叔","5年","5年以上"};
+            List<String> list = Arrays.asList(strings);
+            LoopView.OnItemSelectedListener listener = new LoopView.OnItemSelectedListener() {
+                private String[] types = {"01", "02"};
+
+                @Override
+                public void onItemSelected(int position) {
+                    etJob.setText(strings[position]);
+                }
+            };
+            mEducationDialog = new CustomerPickerDialog(view.getContext(), list, listener);
+        }
+        mEducationDialog.show();
+    }
 
     @Override
     public void onClick(View v) {
-        showEducationDialog(v);
-        startPlayerTimer();
+        switch (v.getId()){
+            case R.id.tvBack:
+                finish();
+                break;
+            case R.id.tvSchool:
+                showEducationDialog(v);
+                break;
+            case R.id.etMarry:
+                showTrueOrFalse(v);
+                break;
+            case R.id.etJob:
+                showold(v);
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopPlayerTimer();
     }
 
-    private PlayerTimer playTimer;
-    /**
-     * start Timer
-     */
-    protected synchronized void startPlayerTimer() {
-        stopPlayerTimer();
-        if (playTimer == null) {
-            Log.e("TAG","------>"+"sta palaTime="+Thread.currentThread());
-            playTimer = new PlayerTimer();
-            Timer m_musictask = new Timer();
-            m_musictask.schedule(playTimer, 30000);
-        }
-    }
 
-    /**
-     * stop Timer
-     */
-    protected synchronized void stopPlayerTimer() {
-        try {
-            if (playTimer != null) {
-                playTimer.cancel();
-                playTimer = null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public class PlayerTimer extends TimerTask {
-
-        public PlayerTimer() {
-        }
-
-        public void run() {
-            //execute task
-            Log.e("TAG","------>"+"palaTime="+Thread.currentThread());
-            stopPlayerTimer();
-        }
-    }
 }

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
@@ -119,8 +120,14 @@ public class LoanFragment extends BaseFragment {
                 }
             }
         });
+        getFooterView();
 
     }
+    private void getFooterView(){
+       View view= LayoutInflater.from(getActivity()).inflate(R.layout.footer_view,null);
+        adapter.addFooterView(view);
+    }
+
     private void getData(){
 //        LoanBean bean1= new LoanBean(1+"","适合大学生",500+"","学生证");
 //        LoanBean bean2= new LoanBean(2+"","普通民工",1000+"","无");
