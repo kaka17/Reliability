@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@drawable/loan_headbg"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+        <TextView
+            android:id="@+id/tv01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3分钟轻松借贷"
+            android:layout_centerVertical="true"
+            android:textColor="@color/whiles"
+            android:gravity="center"
+            android:textSize="36sp"
+            android:layout_marginLeft="16dp"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日息低至1.2元"
+            android:textSize="14sp"
+            android:textColor="@color/whiles"
+            android:layout_marginLeft="16dp"
+            android:layout_below="@+id/tv01"
+            android:layout_marginTop="2dp"
+            />
+        <com.kaiser.reliability.view.CircleImageView
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:src="@drawable/icon"
+            android:scaleType="centerCrop"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/loan_head_02bg"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="最高可以借贷额度"
+            android:layout_marginTop="20dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="36sp"
+            android:text="1 00000"
+            android:textStyle="bold"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:text="借贷1万每天最低仅需1.3元"
+            />
+        <TextView
+            android:id="@+id/tvLead"
+            android:layout_width="match_parent"
+            android:layout_height="34dp"
+            android:textColor="@color/whiles"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:gravity="center"
+            android:background="@drawable/registbg"
+            android:textSize="16dp"
+            android:text="马上借钱"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/bg_color"
+        />
+    </LinearLayout>
+
+</LinearLayout>
