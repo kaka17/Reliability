@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.kaiser.reliability.R;
-import com.kaiser.reliability.api.HttpClient;
+import com.kaiser.reliability.api.apiserver.HttpClient;
 import com.kaiser.reliability.base.AppManager;
 import com.kaiser.reliability.base.BaseActivity;
 import com.kaiser.reliability.bean.GPInFo;
@@ -101,6 +101,11 @@ public class KaiserGuInfoActivity extends BaseActivity<GPInfoPresenter,GPInfoMod
         tvWeekK.setOnClickListener(this);
         tvMonthK.setOnClickListener(this);
         tvRefreash.setOnClickListener(this);
+
+    }
+
+    @Override
+    public void initData() {
 
     }
 

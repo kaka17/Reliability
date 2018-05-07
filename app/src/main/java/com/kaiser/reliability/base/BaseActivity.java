@@ -76,6 +76,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         this.initPresenter();
         this.initView();
         this.setOnClicks();
+        this.initData();
     }
 
     /**
@@ -99,6 +100,8 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public abstract void initView();
     //设置监听
     public abstract void setOnClicks();
+
+    public abstract void initData();
 
     /**
      * 通过Class跳转界面

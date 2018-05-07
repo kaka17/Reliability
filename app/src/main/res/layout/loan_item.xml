@@ -7,7 +7,7 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:orientation="horizontal"
-       android:background="@drawable/loan_itembg"
+       android:background="@color/whiles"
        android:layout_marginLeft="16dp"
        android:layout_marginRight="16dp"
        android:layout_marginTop="8dp"
@@ -25,7 +25,7 @@
                android:layout_height="wrap_content"
                android:text="借贷额"
                android:textSize="18sp"
-               android:textColor="@color/whiles"
+               android:textColor="@color/textBg"
                />
            <TextView
                android:id="@+id/tvMoney"
@@ -33,7 +33,7 @@
                android:layout_height="wrap_content"
                android:text="500"
                android:textSize="26sp"
-               android:textColor="@color/whiles"
+               android:textColor="@color/textBg"
                android:layout_marginTop="10dp"
                android:textStyle="bold"
                />
@@ -58,7 +58,7 @@
                android:layout_height="wrap_content"
                android:text="普通民工"
                android:textSize="18sp"
-               android:textColor="@color/whiles"
+               android:textColor="@color/textBg"
                />
            <TextView
                android:id="@+id/tvCrete"
@@ -66,7 +66,7 @@
                android:layout_height="wrap_content"
                android:text="无"
                android:textSize="18sp"
-               android:textColor="@color/whiles"
+               android:textColor="@color/textBg"
                android:layout_marginTop="10dp"
                />
        </LinearLayout>
@@ -85,6 +85,10 @@
 
 
    </LinearLayout>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/bg_color"
+    />
 
 </LinearLayout>

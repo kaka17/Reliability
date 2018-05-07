@@ -61,6 +61,11 @@ public class MainActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void initData() {
+
+    }
+
     private void initTab() {
         for (int i = 0; i < mTitles.length; i++) {
             mTabEntities.add(new TabEntity(mTitles[i], mIconSelectIds[i], mIconUnselectIds[i]));

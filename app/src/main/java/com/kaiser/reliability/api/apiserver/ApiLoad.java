@@ -1,22 +1,33 @@
-package com.kaiser.reliability.api;
-
+package com.kaiser.reliability.api.apiserver;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kaiser.reliability.api.ApiService;
+import com.kaiser.reliability.api.LoadClient;
+import com.kaiser.reliability.base.AppContext;
 import com.kaiser.reliability.base.BaseApplication;
+import com.kaiser.reliability.configs.Config;
+import com.kaiser.reliability.utils.LogUtil;
 import com.kaiser.reliability.utils.NetWorkUtils;
+import com.kaiser.reliability.utils.StringUtil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -24,27 +35,21 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * 描述：
- * Created by qyh on 2016/12/28.
+ * Created by ex-huangkeze001 on 2018/5/6.   信度
  */
-public class Api {
+
+public class ApiLoad {
+
     public Retrofit retrofit;
-    public ApiService service;
-//    public static final String BASEPATH = "http://192.168.1.84/smartlocktest/server.php/";
-    public static final String BASEPATH = "http://gank.io/api/";
-/*
-*   Map<String, Object> params = new HashMap<>();
-        params.put("longitude", longitude);
-        params.put("latitude", latitude);
-        params.put("pageid",pageid);
-*
-*
-* */
+    public LoadClient service;
+//    public static final String BASEPATH = "http://47.254.129.103:8080/kaka/user/";
+    public static final String BASEPATH = "http://192.168.43.225:8080/kaka/user/";
+
     private static class SingletonHolder {
-        private static final Api INSTANCE = new Api();
+        private static final ApiLoad INSTANCE = new ApiLoad();
     }
 
-    public static Api getInstance() {
+    public static ApiLoad getInstance() {
         return SingletonHolder.INSTANCE;
     }
 
@@ -60,7 +65,7 @@ public class Api {
     };
 
     //构造方法私有
-    private Api() {
+    private ApiLoad() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
@@ -76,6 +81,7 @@ public class Api {
                 .cache(cache)
                 .build();
 
+
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
 
         retrofit = new Retrofit.Builder()
@@ -84,7 +90,8 @@ public class Api {
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(BASEPATH)
                 .build();
-        service = retrofit.create(ApiService.class);
+        service = retrofit.create(LoadClient.class);
+
     }
 
     class HttpCacheInterceptor implements Interceptor {
@@ -114,5 +121,29 @@ public class Api {
                         .build();
             }
         }
+    }
+
+    public RequestBody jsdata(Map<String, Object> maps){
+        try {
+            JSONObject jsonObject=new JSONObject();
+            JSONObject object=new JSONObject(maps);
+            if (!StringUtil.isEmpty(AppContext.getProperty(Config.Phone))){
+                jsonObject.put("mobile",AppContext.getProperty(Config.Phone));
+            }else {
+                jsonObject.put("mobile","");
+            }
+            if (!StringUtil.isEmpty(AppContext.getProperty(Config.OnlineId))){
+                jsonObject.put("onlineId",AppContext.getProperty(Config.OnlineId));
+            }else {
+                jsonObject.put("onlineId","");
+            }
+            jsonObject.put("data",object);
+            LogUtil.logE(jsonObject.toString());
+            RequestBody requestBody = RequestBody.create(MediaType.parse("application/json"),jsonObject.toString());
+            return requestBody;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

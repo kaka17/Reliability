@@ -40,6 +40,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     RelativeLayout reYaoqing;
     @BindView(R.id.reSet)
     RelativeLayout reSet;
+    @BindView(R.id.reLoginOut)
+    RelativeLayout reLoginOut;
     private Context mContext;
     private TakeLoginPop takeLoginPop;
     private NoDataPop noDataPop;
@@ -69,6 +71,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
         rexinyongka.setOnClickListener(this);
         reYaoqing.setOnClickListener(this);
         reSet.setOnClickListener(this);
+        reLoginOut.setOnClickListener(this);
 
 
     }
@@ -126,6 +129,11 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                     showChangInfoPop(v);
                 }
                 break;
+            case R.id.reLoginOut:
+                AppContext.clearPropertyData();
+                getActivity().finish();
+                break;
+
         }
 
 

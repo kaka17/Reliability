@@ -12,7 +12,7 @@ import com.kaiser.reliability.R;
 import com.kaiser.reliability.activity.KKLineActivity;
 import com.kaiser.reliability.activity.KaiserGuInfoActivity;
 import com.kaiser.reliability.adapter.SecondAdapter;
-import com.kaiser.reliability.api.HttpClient;
+import com.kaiser.reliability.api.apiserver.HttpClient;
 import com.kaiser.reliability.base.BaseFragment;
 import com.kaiser.reliability.base.baseadapter.BaseQuickAdapter;
 import com.kaiser.reliability.base.baseadapter.OnItemClickListener;

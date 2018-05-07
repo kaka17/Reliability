@@ -2,7 +2,7 @@ package com.kaiser.reliability.model;
 
 import android.util.Log;
 
-import com.kaiser.reliability.api.HttpClient;
+import com.kaiser.reliability.api.apiserver.HttpClient;
 import com.kaiser.reliability.baserx.RxSchedulers;
 import com.kaiser.reliability.bean.SeconData;
 import com.kaiser.reliability.bean.SecondBean;

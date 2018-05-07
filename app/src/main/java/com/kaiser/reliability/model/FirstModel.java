@@ -1,6 +1,6 @@
 package com.kaiser.reliability.model;
 
-import com.kaiser.reliability.api.Api;
+import com.kaiser.reliability.api.apiserver.Api;
 import com.kaiser.reliability.baserx.RxSchedulers;
 import com.kaiser.reliability.bean.FirstBean;
 import com.kaiser.reliability.bean.GirlData;

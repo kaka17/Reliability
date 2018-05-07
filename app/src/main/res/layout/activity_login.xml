@@ -37,6 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:visibility="gone"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -82,20 +83,20 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="16dp"
             />
+
         <EditText
             android:id="@+id/tvPhone"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
-            android:hint="请输手机号码"
-            android:maxLength="11"
-            android:inputType="phone"
-            android:textSize="16sp"
-            android:paddingLeft="10dp"
-            android:layout_marginLeft="20dp"
             android:background="@drawable/bg_input_box"
-            />
+            android:hint="请输手机号码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingLeft="10dp"
+            android:textSize="16sp" />
 
     </LinearLayout>
     <View
@@ -112,12 +113,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:visibility="gone"
+        android:visibility="visible"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="身份证号"
+            android:text="密码"
             android:textSize="18sp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="16dp"
@@ -128,7 +129,7 @@
             android:layout_height="30dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="10dp"
-            android:hint="请输入身份证号码"
+            android:hint="请输入密码"
             android:textSize="16sp"
             android:paddingLeft="10dp"
             android:layout_marginLeft="20dp"

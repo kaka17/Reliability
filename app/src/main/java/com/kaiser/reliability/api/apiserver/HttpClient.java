@@ -1,9 +1,10 @@
-package com.kaiser.reliability.api;
+package com.kaiser.reliability.api.apiserver;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.kaiser.reliability.api.ApiService;
 import com.kaiser.reliability.base.BaseApplication;
 import com.kaiser.reliability.utils.NetWorkUtils;
 
@@ -23,7 +24,7 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Administrator on 2017/8/15.
+ * Created by Administrator on 2017/8/15.  股票服务器
  */
 public class HttpClient {
     private static HttpClient instance = new HttpClient();

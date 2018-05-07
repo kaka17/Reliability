@@ -1,6 +1,6 @@
 package com.kaiser.reliability.model;
 
-import com.kaiser.reliability.api.HttpClient;
+import com.kaiser.reliability.api.apiserver.HttpClient;
 import com.kaiser.reliability.baserx.RxSchedulers;
 import com.kaiser.reliability.bean.GPInFo;
 import com.kaiser.reliability.bean.GPInfoBean;

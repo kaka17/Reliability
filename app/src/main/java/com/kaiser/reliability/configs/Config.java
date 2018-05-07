@@ -10,7 +10,9 @@ public class Config {
 
     //账号
     public static String Name="Name";
+    public static String Pwd="Pwd";
     public static String Phone="Phone";
+    public static String OnlineId="onlineId";
 
 
 }

@@ -2,6 +2,7 @@ package com.kaiser.reliability.fragment.loanfragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.kaiser.reliability.R;
 import com.kaiser.reliability.activity.LoginActivity;
 import com.kaiser.reliability.activity.MyInfoActivity;
 import com.kaiser.reliability.activity.RegistActivity;
+import com.kaiser.reliability.adapter.AdvertisementAdapter;
 import com.kaiser.reliability.adapter.LoanAdapter;
 import com.kaiser.reliability.base.AppContext;
 import com.kaiser.reliability.base.BaseFragment;
@@ -31,6 +33,8 @@ import com.kaiser.reliability.view.TakeLoginPop;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 
@@ -44,6 +48,7 @@ public class LoanFragment extends BaseFragment {
     RecyclerView rvList;
     @BindView(R.id.teLayou)
     RelativeLayout teLayou;
+    ViewPager mPager;
     private  LinearLayoutManager manager;
     private LoanAdapter  adapter;
     private List<LoanBean> list=new ArrayList<>();
@@ -59,7 +64,10 @@ public class LoanFragment extends BaseFragment {
     int recyclerItemHeight;
     private TakeLoginPop takeLoginPop;
     private NoDataPop noDataPop;
-
+    private AdvertisementAdapter mPagerAdapter;
+    private List<View> views=new ArrayList<>();
+    private View ivDot01,ivDot02,ivDot03;
+    private int pos=0;
     @Override
     protected int getLayoutResource() {
         mContext=getActivity();
@@ -120,12 +128,62 @@ public class LoanFragment extends BaseFragment {
                 }
             }
         });
+        getHeadView();
         getFooterView();
 
     }
     private void getFooterView(){
        View view= LayoutInflater.from(getActivity()).inflate(R.layout.footer_view,null);
         adapter.addFooterView(view);
+    }
+    private void getHeadView(){
+        View view01= LayoutInflater.from(getActivity()).inflate(R.layout.head_item01,null);
+        View view02= LayoutInflater.from(getActivity()).inflate(R.layout.head_item02,null);
+        View view03= LayoutInflater.from(getActivity()).inflate(R.layout.head_item03,null);
+        views.add(view01);
+        views.add(view02);
+        views.add(view03);
+
+        mPager= (ViewPager) mRecyclerViewHeader.findViewById(R.id.mPager);
+       ivDot01=  mRecyclerViewHeader.findViewById(R.id.ivDot01);
+       ivDot02=  mRecyclerViewHeader.findViewById(R.id.ivDot02);
+       ivDot03=  mRecyclerViewHeader.findViewById(R.id.ivDot03);
+        mPagerAdapter=new AdvertisementAdapter(getActivity(),views);
+        mPager.setAdapter(mPagerAdapter);
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        ivDot01.setBackgroundResource(R.color.whiles);
+                        ivDot02.setBackgroundResource(R.color.grgray);
+                        ivDot03.setBackgroundResource(R.color.grgray);
+                        break;
+                    case 1:
+                        ivDot01.setBackgroundResource(R.color.grgray);
+                        ivDot02.setBackgroundResource(R.color.whiles);
+                        ivDot03.setBackgroundResource(R.color.grgray);
+                        break;
+                    case 2:
+                        ivDot01.setBackgroundResource(R.color.grgray);
+                        ivDot02.setBackgroundResource(R.color.grgray);
+                        ivDot03.setBackgroundResource(R.color.whiles);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
     }
 
     private void getData(){
@@ -274,6 +332,7 @@ public class LoanFragment extends BaseFragment {
                     switch (v.getId()){
                         case R.id.tvChangInfo:
                             startActivity(new Intent(getActivity(),MyInfoActivity.class));
+                            takeLoginPop.dismiss();
                             break;
 
                     }
@@ -290,6 +349,47 @@ public class LoanFragment extends BaseFragment {
             });
         }else {
             noDataPop.dismiss();
+        }
+    }
+
+
+    private PlayerTimer playTimer;
+    /**
+     * start Timer
+     */
+    protected synchronized void startPlayerTimer() {
+        stopPlayerTimer();
+        if (playTimer == null) {
+            Log.e("TAG","------>"+"sta palaTime="+Thread.currentThread());
+            playTimer = new PlayerTimer();
+            Timer m_musictask = new Timer();
+            m_musictask.schedule(playTimer, 3000,3000);
+        }
+    }
+
+    /**
+     * stop Timer
+     */
+    protected synchronized void stopPlayerTimer() {
+        try {
+            if (playTimer != null) {
+                playTimer.cancel();
+                playTimer = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public class PlayerTimer extends TimerTask {
+
+        public PlayerTimer() {
+        }
+
+        public void run() {
+            //execute task
+            Log.e("TAG","------>"+"palaTime="+Thread.currentThread());
+            stopPlayerTimer();
         }
     }
 }

@@ -189,6 +189,11 @@ public class KKLineActivity extends BaseActivity {
 
     }
 
+    @Override
+    public void initData() {
+
+    }
+
 
     private void getOffLineData() {
            /*方便测试，加入假数据*/

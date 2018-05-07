@@ -23,6 +23,6 @@
             android:layout_centerVertical="true"
             android:textColor="@color/whiles"
             android:textSize="18sp"
-            android:text="借贷" />
+            android:text="信度" />
     </RelativeLayout>
 </FrameLayout>

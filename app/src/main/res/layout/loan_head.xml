@@ -5,7 +5,9 @@
     android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        android:visibility="gone"
+        >
         <TextView
             android:id="@+id/tv01"
             android:layout_width="wrap_content"
@@ -31,7 +33,8 @@
         <com.kaiser.reliability.view.CircleImageView
             android:layout_width="46dp"
             android:layout_height="46dp"
-            android:src="@drawable/icon"
+            android:src="@mipmap/icon"
+            android:visibility="visible"
             android:scaleType="centerCrop"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
@@ -40,12 +43,54 @@
             />
 
     </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+    <android.support.v4.view.ViewPager
+        android:id="@+id/mPager"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+    </android.support.v4.view.ViewPager>
 
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="10dp"
+         android:orientation="horizontal"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="4dp"
+         >
+         <View
+             android:id="@+id/ivDot01"
+             android:layout_width="16dp"
+             android:layout_height="2dp"
+             android:background="@color/whiles"
+             />
+         <View
+             android:id="@+id/ivDot02"
+             android:layout_width="16dp"
+             android:layout_height="2dp"
+             android:layout_marginLeft="10dp"
+             android:layout_marginRight="10dp"
+             android:background="@color/grgray"
+             />
+         <View
+             android:id="@+id/ivDot03"
+             android:layout_width="16dp"
+             android:layout_height="2dp"
+             android:background="@color/grgray"
+             />
+
+
+     </LinearLayout>
+
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
+        android:visibility="visible"
         android:background="@drawable/loan_head_02bg"
         >
         <TextView
