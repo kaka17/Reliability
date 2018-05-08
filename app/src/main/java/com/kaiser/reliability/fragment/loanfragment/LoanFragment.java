@@ -366,7 +366,7 @@ public class LoanFragment extends BaseFragment {
             Log.e("TAG","------>"+"sta palaTime="+Thread.currentThread());
             playTimer = new PlayerTimer();
             Timer m_musictask = new Timer();
-            m_musictask.schedule(playTimer, 8000,8000);
+            m_musictask.schedule(playTimer, 5000,5000);
         }
     }
 

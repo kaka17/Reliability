@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.kaiser.reliability.R;
 import com.kaiser.reliability.activity.LoginActivity;
@@ -42,6 +43,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     RelativeLayout reSet;
     @BindView(R.id.reLoginOut)
     RelativeLayout reLoginOut;
+    @BindView(R.id.tvNickName)
+    TextView tvNickName;
     private Context mContext;
     private TakeLoginPop takeLoginPop;
     private NoDataPop noDataPop;
@@ -59,7 +62,9 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void initView() {
-
+        if (!StringUtil.isEmpty(AppContext.getProperty(Config.Phone))){
+            tvNickName.setText(AppContext.getProperty(Config.Phone));
+        }
     }
 
     @Override
