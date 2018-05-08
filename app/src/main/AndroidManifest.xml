@@ -28,10 +28,19 @@
             android:name="com.kaiser.reliability.activity.KaiserGuInfoActivity"
             android:label="@string/title_activity_Kaiser" />
         <activity android:name="com.kaiser.reliability.activity.KKLineActivity" />
-        <activity android:name="com.kaiser.reliability.activity.LoginActivity"></activity>
+        <activity android:name="com.kaiser.reliability.activity.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            >
+        </activity>
+        <!-- -->
         <activity
             android:name="com.kaiser.reliability.activity.ToLoanActivity"
             android:label="@string/app_name"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,10 +50,17 @@
         </activity>
         <activity
             android:name="com.kaiser.reliability.activity.RegistActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
             >
-
         </activity>
-        <activity android:name="com.kaiser.reliability.activity.MyInfoActivity"></activity>
+        <activity android:name="com.kaiser.reliability.activity.MyInfoActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"
+            >
+        </activity>
     </application>
 
 </manifest>

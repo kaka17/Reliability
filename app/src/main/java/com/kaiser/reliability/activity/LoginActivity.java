@@ -30,7 +30,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText tvName,tvPhone,tvpwd;
     private TextView tvLogin,tvRegist;
-
+    private  String phone;
 
     @Override
     public int getLayoutId() {
@@ -68,6 +68,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.tvRegist:
                 startActivity(new Intent(getApplicationContext(),RegistActivity.class));
+                finish();
                 break;
             case R.id.tvLogin:
                 if (islogin()){
@@ -79,15 +80,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         }
     }
     private boolean islogin(){
-        String phone=tvPhone.getText().toString().trim();
+        phone=tvPhone.getText().toString().trim();
         String pwd=tvpwd.getText().toString().trim();
-
-        if (StringUtil.isEmpty(pwd)){
-            ToastUitl.showShort("请输入密码");
-            return false;
-        }
         if (StringUtil.isEmpty(phone)){
             ToastUitl.showShort("请输入电话号码");
+            return false;
+        }
+        if (StringUtil.isEmpty(pwd)){
+            ToastUitl.showShort("请输入密码");
             return false;
         }
         AppContext.setProperty(Config.Pwd,pwd);
@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private void getLogin(String pwd){
         Map<String,Object> map=new HashMap<>();
         map.put("password",pwd);
+        startProgressDialog();
         RequestBody jsdata = ApiLoad.getInstance().jsdata(map);
 
         Observable<BaseBean<Users>> registUser = ApiLoad.getInstance().service.getLoginUser(jsdata);
@@ -116,10 +117,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             protected void _onNext(BaseBean<Users> user) {
                 try {
+                    stopProgressDialog();
                     Log.e("TAG","------"+user.toString()+"b==");
                     if (user.isOk()){
-//                        AppContext.setProperty(Config.Name,name);
-//                        AppContext.setProperty(Config.Phone,phone);
+                        AppContext.setProperty(Config.Phone,phone);
+                        startActivity(new Intent(getApplicationContext(),ToLoanActivity.class));
+                    AppContext.setProperty(Config.ISLOGINGING,Config.ISLOGINGING);
                         AppContext.setProperty(Config.OnlineId,user.getData().getOnlineId());
                     }
                 } catch (Exception e) {
@@ -130,7 +133,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
             @Override
             protected void _onError(String message) {
-
+                stopProgressDialog();
             }
         }));
     }

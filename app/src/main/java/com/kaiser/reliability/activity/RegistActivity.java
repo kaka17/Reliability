@@ -125,7 +125,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         return true;
     }
     private void getRegist(final RequestBody mobile){
-
+        startProgressDialog();
             Observable<BaseBean<Users>> registUser = ApiLoad.getInstance().service.getRegistUser(mobile);
 
             RxManager mRxManage = new RxManager();
@@ -140,6 +140,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 @Override
                 protected void _onNext(BaseBean<Users> user) {
                     try {
+                        stopProgressDialog();
                         Log.e("TAG","------"+user.toString()+"b==");
                         if (user.isOk()){
                             AppContext.setProperty(Config.Name,name);
@@ -159,7 +160,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
                 @Override
                 protected void _onError(String message) {
-
+                    stopProgressDialog();
                 }
             }));
     }

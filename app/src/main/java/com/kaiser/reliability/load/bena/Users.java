@@ -1,7 +1,5 @@
 package com.kaiser.reliability.load.bena;
 
-import com.kaiser.reliability.bean.BaseBean;
-import com.kaiser.reliability.bean.Data;
 
 /**
  * Created by ex-huangkeze001 on 2018/5/6.
@@ -184,6 +182,24 @@ public class Users{
     public String toString() {
         return "Users{" +
                 "onlineId='" + onlineId + '\'' +
+                ", id='" + id + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", modifyTime='" + modifyTime + '\'' +
+                ", userName='" + userName + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", jobTime='" + jobTime + '\'' +
+                ", newAddress='" + newAddress + '\'' +
+                ", homeAddress='" + homeAddress + '\'' +
+                ", houseAddress='" + houseAddress + '\'' +
+                ", isCredit='" + isCredit + '\'' +
+                ", isLoad='" + isLoad + '\'' +
+                ", isOverDur='" + isOverDur + '\'' +
+                ", isMarry='" + isMarry + '\'' +
+                ", familymembers='" + familymembers + '\'' +
+                ", salary='" + salary + '\'' +
+                ", education='" + education + '\'' +
+                ", isSubmit='" + isSubmit + '\'' +
                 '}';
     }
 }

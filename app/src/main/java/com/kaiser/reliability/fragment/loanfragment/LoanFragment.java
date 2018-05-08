@@ -332,7 +332,7 @@ public class LoanFragment extends BaseFragment {
                     switch (v.getId()){
                         case R.id.tvChangInfo:
                             startActivity(new Intent(getActivity(),MyInfoActivity.class));
-                            takeLoginPop.dismiss();
+                            noDataPop.dismiss();
                             break;
 
                     }
