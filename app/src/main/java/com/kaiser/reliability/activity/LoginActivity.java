@@ -29,7 +29,7 @@ import rx.functions.Func1;
 public class LoginActivity extends BaseActivity implements View.OnClickListener{
 
     private EditText tvName,tvPhone,tvpwd;
-    private TextView tvLogin,tvRegist;
+        private TextView tvLogin,tvRegist,tvBack;
     private  String phone;
 
     @Override
@@ -49,6 +49,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
         tvpwd = (EditText) findViewById(R.id.tvCare);
         tvLogin = (TextView) findViewById(R.id.tvLogin);
         tvRegist = (TextView) findViewById(R.id.tvRegist);
+        tvBack = (TextView) findViewById(R.id.tvBack);
 
     }
 
@@ -56,6 +57,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     public void setOnClicks() {
         tvLogin.setOnClickListener(this);
         tvRegist.setOnClickListener(this);
+        tvBack.setOnClickListener(this);
     }
 
     @Override
@@ -66,6 +68,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tvBack:
+                finish();
+                break;
             case R.id.tvRegist:
                 startActivity(new Intent(getApplicationContext(),RegistActivity.class));
                 finish();

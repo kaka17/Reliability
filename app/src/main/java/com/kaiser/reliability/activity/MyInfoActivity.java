@@ -198,6 +198,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
     private void getinfo(){
         Map<String,Object> map=new HashMap<>();
+        startProgressDialog();
         RequestBody jsdata = ApiLoad.getInstance().jsdata(map);
         Observable<BaseBean<Users>> registUser = ApiLoad.getInstance().service.getUserInfo(jsdata);
         RxManager mRxManage = new RxManager();
@@ -212,6 +213,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             @Override
             protected void _onNext(BaseBean<Users> user) {
                 try {
+                    stopProgressDialog();
                     Log.e("TAG","------"+user.toString()+"b=="+user.getData().getOnlineId());
                     if (user.isOk()){
                         Users data = user.getData();
@@ -238,7 +240,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             protected void _onError(String message) {
-
+                stopProgressDialog();
             }
         }));
     }
@@ -246,10 +248,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
     private void getUpinfo(){
         String name = etName.getText().toString().trim();
         String idCard = etIDCar.getText().toString().trim();
-        String newAdress = etIDAddress.getText().toString().trim();
+        String idAdress = etIDAddress.getText().toString().trim();
         String homeAddress = etZhuAddress.getText().toString().trim();
-        String marry = etMarry.getText().toString().trim();
         String houseAddress = etHouseAddress.getText().toString().trim();
+        String marry = etMarry.getText().toString().trim();
 //        String jobTime = etJob.getText().toString().trim();
         String familyNum = etFamilyNum.getText().toString().trim();
         String load = etLoad.getText().toString().trim();
@@ -277,11 +279,11 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         if (jobTime!=-1){
             map.put("jobTime",jobTime+"");
         }
-        if (!StringUtil.isEmpty(newAdress)){
-            map.put("newAdress",newAdress);
+        if (!StringUtil.isEmpty(idAdress)){
+            map.put("homeAddress",idAdress);//身份地址
         }
         if (!StringUtil.isEmpty(homeAddress)){
-            map.put("homeAddress",homeAddress);
+            map.put("newAddress",homeAddress);//居住地址
         }
         if (!StringUtil.isEmpty(houseAddress)){
             map.put("houseAddress",houseAddress);
@@ -297,7 +299,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         }
 
 
-
+        startProgressDialog();
         RequestBody jsdata = ApiLoad.getInstance().jsdata(map);
 
         Observable<BaseBean<Users>> registUser = ApiLoad.getInstance().service.getUpUsers(jsdata);
@@ -314,6 +316,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             @Override
             protected void _onNext(BaseBean<Users> user) {
                 try {
+                    stopProgressDialog();
                     Log.e("TAG","------"+user.toString()+"b=="+user.getData().getOnlineId());
                     if (user.isOk()){
                         ToastUitl.show("资料修改成功", Toast.LENGTH_SHORT);
@@ -331,6 +334,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
             @Override
             protected void _onError(String message) {
+                stopProgressDialog();
                 ToastUitl.show("服务器连接失败，请重新提交", Toast.LENGTH_SHORT);
             }
         }));

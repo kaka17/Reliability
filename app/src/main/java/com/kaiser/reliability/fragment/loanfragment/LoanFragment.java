@@ -130,7 +130,7 @@ public class LoanFragment extends BaseFragment {
         });
         getHeadView();
         getFooterView();
-
+        startPlayerTimer();
     }
     private void getFooterView(){
        View view= LayoutInflater.from(getActivity()).inflate(R.layout.footer_view,null);
@@ -159,6 +159,7 @@ public class LoanFragment extends BaseFragment {
 
             @Override
             public void onPageSelected(int position) {
+                pos=position;
                 switch (position){
                     case 0:
                         ivDot01.setBackgroundResource(R.color.whiles);
@@ -297,9 +298,11 @@ public class LoanFragment extends BaseFragment {
                     switch (v.getId()){
                         case R.id.tvLogin:
                             startActivity(new Intent(getActivity(), LoginActivity.class));
+                            takeLoginPop.dismiss();
                             break;
                         case R.id.tvRegist:
                             startActivity(new Intent(getActivity(), RegistActivity.class));
+                            takeLoginPop.dismiss();
                             break;
                     }
                 }
@@ -363,7 +366,7 @@ public class LoanFragment extends BaseFragment {
             Log.e("TAG","------>"+"sta palaTime="+Thread.currentThread());
             playTimer = new PlayerTimer();
             Timer m_musictask = new Timer();
-            m_musictask.schedule(playTimer, 3000,3000);
+            m_musictask.schedule(playTimer, 8000,8000);
         }
     }
 
@@ -389,7 +392,22 @@ public class LoanFragment extends BaseFragment {
         public void run() {
             //execute task
             Log.e("TAG","------>"+"palaTime="+Thread.currentThread());
-            stopPlayerTimer();
+            if (getActivity()==null){
+                stopPlayerTimer();
+                return;
+            }
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (pos<2){
+                        pos++;
+                        mPager.setCurrentItem(pos);
+                    }else {
+                        pos=0;
+                        mPager.setCurrentItem(pos);
+                    }
+                }
+            });
         }
     }
 }

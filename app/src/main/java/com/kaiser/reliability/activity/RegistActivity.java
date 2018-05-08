@@ -36,7 +36,7 @@ import rx.functions.Func1;
 
 public class RegistActivity extends BaseActivity implements View.OnClickListener{
     private EditText tvName,tvPhone,tvpwd01,tvPwd02;
-    private TextView tvLogin,tvRegist;
+    private TextView tvLogin,tvRegist,tvBack;
     private String name,phone,pwd;
 
     @Override
@@ -63,12 +63,14 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         tvPwd02 = (EditText) findViewById(R.id.tvPwd02);
         tvLogin = (TextView) findViewById(R.id.tvLogin);
         tvRegist = (TextView) findViewById(R.id.tvRegist);
+        tvBack = (TextView) findViewById(R.id.tvBack);
     }
 
     @Override
     public void setOnClicks() {
         tvLogin.setOnClickListener(this);
         tvRegist.setOnClickListener(this);
+        tvBack.setOnClickListener(this);
     }
 
     @Override
@@ -79,6 +81,9 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()){
+            case R.id.tvBack:
+                finish();
+                break;
             case R.id.tvRegist:
                 if (isLogin()){
                     String mobile = tvPhone.getText().toString().trim();
