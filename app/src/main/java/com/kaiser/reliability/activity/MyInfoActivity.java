@@ -22,6 +22,8 @@ import com.kaiser.reliability.utils.ToastUitl;
 import com.kaiser.reliability.view.CustomerPickerDialog;
 import com.kaiser.reliability.view.LoopView;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -36,8 +38,8 @@ import rx.functions.Func1;
 public class MyInfoActivity extends BaseActivity implements View.OnClickListener{
     private CustomerPickerDialog mEducationDialog,mIsTFDialog,mJobTimeDialog;
     private TextView tvSchool,tvSave;
-    private EditText etName,etPhone,etIDCar,etZhuAddress,etIDAddress,etHouseAddress,etFamilyNum,etXinCar,etRecord,etLoad,etSalay;
-    private TextView tvTitle,tvBack,etMarry,etJob;
+    private EditText etName,etPhone,etIDCar,etZhuAddress,etIDAddress,etHouseAddress,etFamilyNum,etSalay;
+    private TextView tvTitle,tvBack,etMarry,etJob,etRecord,etLoad,etXinCar;
     private int jobTime=-1;
 
     @Override
@@ -70,9 +72,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         etHouseAddress = (EditText) findViewById(R.id.etHouseAddress);
         etJob = (TextView) findViewById(R.id.etJob);
         etFamilyNum = (EditText) findViewById(R.id.etFamilyNum);
-        etXinCar = (EditText) findViewById(R.id.etXinCar);
-        etRecord = (EditText) findViewById(R.id.etRecord);
-        etLoad = (EditText) findViewById(R.id.etLoad);
+        etXinCar = (TextView) findViewById(R.id.etXinCar);
+        etRecord = (TextView) findViewById(R.id.etRecord);
+        etLoad = (TextView) findViewById(R.id.etLoad);
         etSalay = (EditText) findViewById(R.id.etSalay);
 
         tvSchool= (TextView) findViewById(R.id.tvSchool);
@@ -88,6 +90,9 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         etMarry.setOnClickListener(this);
         etJob.setOnClickListener(this);
         tvSave.setOnClickListener(this);
+        etRecord.setOnClickListener(this);
+        etLoad.setOnClickListener(this);
+        etXinCar.setOnClickListener(this);
     }
 
     @Override
@@ -130,7 +135,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         }
         mEducationDialog.show();
     }
-    private void showTrueOrFalse(View virw) {
+    private void showTrueOrFalse(View virw, final TextView mTextView) {
         if (mIsTFDialog == null) {
             final String[] strings = {"是", "否"};
             List<String> list = Arrays.asList(strings);
@@ -139,7 +144,8 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
 
                 @Override
                 public void onItemSelected(int position) {
-                    etMarry.setText(strings[position]);
+                    mTextView.setText(strings[position]);
+                    mIsTFDialog=null;
                 }
             };
             mIsTFDialog = new CustomerPickerDialog(virw.getContext(), list, listener);
@@ -175,13 +181,22 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 showEducationDialog(v);
                 break;
             case R.id.etMarry:
-                showTrueOrFalse(v);
+                showTrueOrFalse(v,etMarry);
                 break;
             case R.id.etJob:
                 showold(v);
                 break;
             case R.id.tvSave:
                 getUpinfo();
+                break;
+            case R.id.etLoad:
+                showTrueOrFalse(v,etLoad);
+                break;
+            case R.id.etRecord:
+                showTrueOrFalse(v,etRecord);
+                break;
+            case R.id.etXinCar:
+                showTrueOrFalse(v,etXinCar);
                 break;
 
             default:
@@ -218,19 +233,19 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                     if (user.isOk()){
                         Users data = user.getData();
                         etName.setText(data.getUserName());
-                        etFamilyNum.setText(data.getFamilymembers());
+                        etFamilyNum.setText(data.getFamilyMembers());
                         etIDCar.setText(data.getIdCard());
                         etIDAddress.setText(data.getHomeAddress());
-                        etZhuAddress.setText(data.getNewAddress());
+                        etZhuAddress.setText(data.getNowAddress());
                         etHouseAddress.setText(data.getHouseAddress());
-                        etFamilyNum.setText(data.getFamilymembers());
+                        etFamilyNum.setText(data.getFamilyMembers());
                         tvSchool.setText(data.getEducation());
                         etSalay.setText(data.getSalary());
                         etJob.setText(StringUtil.isEmpty(data.getJobTime())?"":data.getJobTime()+"年");
                         etMarry.setText(StringUtil.isEmpty(data.getIsMarry())?"":"1".equals(data.getIsMarry())?"是":"否");
                         etXinCar.setText(StringUtil.isEmpty(data.getIsCredit())?"":"1".equals(data.getIsCredit())?"是":"否");//是否有信用卡
-                        etRecord.setText(StringUtil.isEmpty(data.getIsOverDur())?"":"1".equals(data.getIsOverDur())?"是":"否");//是否逾期
-                        etLoad.setText(StringUtil.isEmpty(data.getIsLoad())?"":"1".equals(data.getIsOverDur())?"是":"否");
+                        etRecord.setText(StringUtil.isEmpty(data.getIsOverDue())?"":"1".equals(data.getIsOverDue())?"是":"否");//是否逾期
+                        etLoad.setText(StringUtil.isEmpty(data.getIsLoan())?"":"1".equals(data.getIsLoan())?"是":"否");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -268,10 +283,10 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             map.put("isCredit","是".equals(xinCard)?"1":"0");
         }
         if (!StringUtil.isEmpty(load)){
-            map.put("isLoad","是".equals(load)?"1":"0");
+            map.put("isLoan","是".equals(load)?"1":"0");
         }
         if (!StringUtil.isEmpty(overDue)){
-            map.put("isOverDue","是".equals(load)?"1":"0");
+            map.put("isOverDue","是".equals(overDue)?"1":"0");
         }
         if (!StringUtil.isEmpty(idCard)){
             map.put("idCard",idCard);
@@ -283,7 +298,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
             map.put("homeAddress",idAdress);//身份地址
         }
         if (!StringUtil.isEmpty(homeAddress)){
-            map.put("newAddress",homeAddress);//居住地址
+            map.put("nowAddress",homeAddress);//居住地址
         }
         if (!StringUtil.isEmpty(houseAddress)){
             map.put("houseAddress",houseAddress);

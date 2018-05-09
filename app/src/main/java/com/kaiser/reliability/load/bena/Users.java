@@ -14,17 +14,25 @@ public class Users{
     private String userName;
     private String idCard;
     private String jobTime;
-    private String newAddress;
+    private String nowAddress;
     private String homeAddress;
     private String houseAddress;
     private String isCredit;
-    private String isLoad;
-    private String isOverDur;
+    private String isLoan;
+    private String isOverDue;
     private String isMarry;
-    private String familymembers;
+    private String familyMembers;
     private String salary;
     private String education;
     private String isSubmit;
+
+    public String getNowAddress() {
+        return nowAddress;
+    }
+
+    public void setNowAddress(String nowAddress) {
+        this.nowAddress = nowAddress;
+    }
 
     public String getIsSubmit() {
         return isSubmit;
@@ -90,13 +98,7 @@ public class Users{
         this.jobTime = jobTime;
     }
 
-    public String getNewAddress() {
-        return newAddress;
-    }
 
-    public void setNewAddress(String newAddress) {
-        this.newAddress = newAddress;
-    }
 
     public String getHomeAddress() {
         return homeAddress;
@@ -122,20 +124,20 @@ public class Users{
         this.isCredit = isCredit;
     }
 
-    public String getIsLoad() {
-        return isLoad;
+    public String getIsLoan() {
+        return isLoan;
     }
 
-    public void setIsLoad(String isLoad) {
-        this.isLoad = isLoad;
+    public void setIsLoan(String isLoan) {
+        this.isLoan = isLoan;
     }
 
-    public String getIsOverDur() {
-        return isOverDur;
+    public String getIsOverDue() {
+        return isOverDue;
     }
 
-    public void setIsOverDur(String isOverDur) {
-        this.isOverDur = isOverDur;
+    public void setIsOverDue(String isOverDue) {
+        this.isOverDue = isOverDue;
     }
 
     public String getIsMarry() {
@@ -146,12 +148,12 @@ public class Users{
         this.isMarry = isMarry;
     }
 
-    public String getFamilymembers() {
-        return familymembers;
+    public String getFamilyMembers() {
+        return familyMembers;
     }
 
-    public void setFamilymembers(String familymembers) {
-        this.familymembers = familymembers;
+    public void setFamilyMembers(String familyMembers) {
+        this.familyMembers = familyMembers;
     }
 
     public String getSalary() {
@@ -189,14 +191,14 @@ public class Users{
                 ", userName='" + userName + '\'' +
                 ", idCard='" + idCard + '\'' +
                 ", jobTime='" + jobTime + '\'' +
-                ", newAddress='" + newAddress + '\'' +
+                ", newAddress='" + nowAddress + '\'' +
                 ", homeAddress='" + homeAddress + '\'' +
                 ", houseAddress='" + houseAddress + '\'' +
                 ", isCredit='" + isCredit + '\'' +
-                ", isLoad='" + isLoad + '\'' +
-                ", isOverDur='" + isOverDur + '\'' +
+                ", isLoad='" + isLoan + '\'' +
+                ", isOverDur='" + isOverDue + '\'' +
                 ", isMarry='" + isMarry + '\'' +
-                ", familymembers='" + familymembers + '\'' +
+                ", familymembers='" + familyMembers + '\'' +
                 ", salary='" + salary + '\'' +
                 ", education='" + education + '\'' +
                 ", isSubmit='" + isSubmit + '\'' +

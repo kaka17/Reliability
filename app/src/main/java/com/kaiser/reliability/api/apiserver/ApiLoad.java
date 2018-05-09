@@ -42,8 +42,9 @@ public class ApiLoad {
 
     public Retrofit retrofit;
     public LoadClient service;
-    public static final String BASEPATH = "http://47.254.129.103:8080/kaka/user/";
+//    public static final String BASEPATH = "http://47.254.129.103:8080/kaka/user/";
 //    public static final String BASEPATH = "http://192.168.43.225:8080/kaka/user/";
+    public static final String BASEPATH = "http://www.sendo.club/kaka/user/";
 
     private static class SingletonHolder {
         private static final ApiLoad INSTANCE = new ApiLoad();

@@ -271,6 +271,7 @@
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:text=""
+                    android:textColor="@color/textBg"
                     android:layout_marginRight="16dp"
                     android:gravity="center_vertical"
                     android:background="@drawable/image_password"
@@ -307,6 +308,7 @@
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
+                    android:textColor="@color/textBg"
                     android:background="@drawable/image_password"
                     android:gravity="center_vertical"
                     android:paddingLeft="8dp"
@@ -344,6 +346,7 @@
                     android:layout_marginRight="16dp"
                     android:gravity="center_vertical"
                     android:inputType="number"
+                    android:textColor="@color/textBg"
                     android:background="@drawable/image_password"
                     android:paddingLeft="6dp" />
             </LinearLayout>
@@ -403,12 +406,14 @@
                     android:textColor="@color/textBg"
                     android:textSize="16sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/etXinCar"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textBg"
                     android:background="@drawable/image_password"
                     android:paddingLeft="6dp" />
             </LinearLayout>
@@ -434,12 +439,14 @@
                     android:textColor="@color/textBg"
                     android:textSize="16sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/etLoad"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/textBg"
                     android:background="@drawable/image_password"
                     android:paddingLeft="6dp" />
             </LinearLayout>
@@ -465,12 +472,14 @@
                     android:textColor="@color/textBg"
                     android:textSize="16sp" />
 
-                <EditText
+                <TextView
                     android:id="@+id/etRecord"
                     android:layout_width="match_parent"
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
+                    android:textColor="@color/textBg"
+                    android:gravity="center_vertical"
                     android:background="@drawable/image_password"
                     android:paddingLeft="6dp" />
             </LinearLayout>
