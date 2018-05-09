@@ -68,6 +68,8 @@ public class LoanFragment extends BaseFragment {
     private List<View> views=new ArrayList<>();
     private View ivDot01,ivDot02,ivDot03;
     private int pos=0;
+    private View linTop;
+
     @Override
     protected int getLayoutResource() {
         mContext=getActivity();
@@ -77,6 +79,13 @@ public class LoanFragment extends BaseFragment {
     @Override
     public void initPresenter() {
 
+    }
+    public void setLoadBg(boolean isLoad){
+        if (isLoad){
+            tvLead.setBackgroundResource(R.drawable.grede_bg);
+        }else {
+            tvLead.setBackgroundResource(R.drawable.registbg);
+        }
     }
 
     @Override
@@ -117,6 +126,7 @@ public class LoanFragment extends BaseFragment {
         //
         showSystemParameter();
         tvLead= (TextView) mRecyclerViewHeader.findViewById(R.id.tvLead);
+        linTop = mRecyclerViewHeader.findViewById(R.id.linTop);
 //        tvLead= (TextView) getActivity().findViewById(R.id.tvLead);
         tvLead.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +138,7 @@ public class LoanFragment extends BaseFragment {
                 }
             }
         });
+
         getHeadView();
         getFooterView();
         startPlayerTimer();

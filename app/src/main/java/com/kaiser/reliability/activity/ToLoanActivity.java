@@ -71,7 +71,7 @@ public class ToLoanActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        getuserStatus();
+
     }
 
     private void initTab() {
@@ -129,6 +129,12 @@ public class ToLoanActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getuserStatus();
+    }
+
     private void getuserStatus(){
         Map<String,Object> map=new HashMap<>();
         RequestBody jsdata = ApiLoad.getInstance().jsdata(map);
@@ -151,6 +157,13 @@ public class ToLoanActivity extends BaseActivity {
                     if (user.isOk()){
 //                        AppContext.setProperty(Config.Name,name);
 //                        AppContext.setProperty(Config.Phone,phone);
+                        if ("1".equals(user.getData().getIsSubmit())){
+                            LoanFragment.setLoadBg(true);
+                        }else {
+                            LoanFragment.setLoadBg(false);
+                        }
+                    }else {
+                        LoanFragment.setLoadBg(false);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -160,7 +173,7 @@ public class ToLoanActivity extends BaseActivity {
 
             @Override
             protected void _onError(String message) {
-
+                LoanFragment.setLoadBg(false);
             }
         }));
     }

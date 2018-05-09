@@ -106,6 +106,7 @@
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="16dp"
+                    android:digits="1234567890qwertyuiopasdfghjklzxcvbnm"
                     android:background="@drawable/image_password"
                     android:paddingLeft="6dp" />
             </LinearLayout>
@@ -235,6 +236,7 @@
                     android:layout_height="32dp"
                     android:layout_marginLeft="10dp"
                     android:text=""
+                    android:inputType="number"
                     android:layout_marginRight="16dp"
                     android:gravity="center_vertical"
                     android:background="@drawable/image_password"

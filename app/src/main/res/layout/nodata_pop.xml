@@ -29,7 +29,7 @@
             android:id="@+id/tvName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="咔咔放心贷"
+            android:text="信度金服"
             android:layout_marginLeft="6dp"
             android:layout_toRightOf="@+id/ivPic"
             android:layout_marginTop="10dp"
@@ -73,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="咔咔贷承若保护您的隐私信息，杜绝泄漏风险"
+            android:text="信度金服承若保护您的隐私信息，杜绝泄漏风险"
             android:layout_gravity="center_vertical"
             android:textColor="@color/textBg"
             />

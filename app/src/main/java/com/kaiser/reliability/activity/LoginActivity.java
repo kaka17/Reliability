@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kaiser.reliability.R;
 import com.kaiser.reliability.api.apiserver.ApiLoad;
@@ -16,11 +17,14 @@ import com.kaiser.reliability.baserx.RxSubscriber;
 import com.kaiser.reliability.bean.BaseBean;
 import com.kaiser.reliability.configs.Config;
 import com.kaiser.reliability.load.bena.Users;
+import com.kaiser.reliability.utils.CheckPhone;
 import com.kaiser.reliability.utils.StringUtil;
 import com.kaiser.reliability.utils.ToastUitl;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -87,17 +91,21 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
     private boolean islogin(){
         phone=tvPhone.getText().toString().trim();
         String pwd=tvpwd.getText().toString().trim();
-        if (StringUtil.isEmpty(phone)){
-            ToastUitl.showShort("请输入电话号码");
+        if (StringUtil.isEmpty(phone)||phone.length()!=11){
+            ToastUitl.showShort("请输入正确的电话号码");
             return false;
         }
         if (StringUtil.isEmpty(pwd)){
             ToastUitl.showShort("请输入密码");
             return false;
         }
+        boolean mobileNO = CheckPhone.isPhone(phone);
+        if (!mobileNO){
+            ToastUitl.showShort("手机号码不匹配");
+            return false;
+        }
         AppContext.setProperty(Config.Pwd,pwd);
         AppContext.setProperty(Config.Phone,phone);
-
         getLogin(pwd);
         return true;
     }
@@ -127,8 +135,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
                     if (user.isOk()){
                         AppContext.setProperty(Config.Phone,phone);
                         startActivity(new Intent(getApplicationContext(),ToLoanActivity.class));
-                    AppContext.setProperty(Config.ISLOGINGING,Config.ISLOGINGING);
+                        AppContext.setProperty(Config.ISLOGINGING,Config.ISLOGINGING);
                         AppContext.setProperty(Config.OnlineId,user.getData().getOnlineId());
+                    }else {
+                        ToastUitl.show("账号错误",Toast.LENGTH_SHORT);
+                        AppContext.setProperty(Config.Pwd,"");
+                        AppContext.setProperty(Config.Phone,"");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -139,6 +151,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener{
             @Override
             protected void _onError(String message) {
                 stopProgressDialog();
+                AppContext.setProperty(Config.Pwd,"");
+                AppContext.setProperty(Config.Phone,"");
+                ToastUitl.show("服务器连接错误", Toast.LENGTH_SHORT);
+
             }
         }));
     }

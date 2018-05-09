@@ -22,6 +22,7 @@ import com.kaiser.reliability.bean.SeconData;
 import com.kaiser.reliability.bean.User;
 import com.kaiser.reliability.configs.Config;
 import com.kaiser.reliability.load.bena.Users;
+import com.kaiser.reliability.utils.CheckPhone;
 import com.kaiser.reliability.utils.StringUtil;
 import com.kaiser.reliability.utils.ToastUitl;
 
@@ -29,6 +30,8 @@ import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -88,7 +91,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 if (isLogin()){
                     String mobile = tvPhone.getText().toString().trim();
                     if (StringUtil.isEmpty(mobile)){
-                        ToastUitl.show("请填写电话号码", Toast.LENGTH_SHORT);
+                        ToastUitl.show("请填写正确的电话号码", Toast.LENGTH_SHORT);
                         return;
                     }
                     Map<String,Object> map=new HashMap<>();
@@ -107,14 +110,13 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 break;
         }
     }
-
     private boolean isLogin(){
          phone=tvPhone.getText().toString().trim();
          pwd=tvpwd01.getText().toString().trim();
         String pwd02=tvPwd02.getText().toString().trim();
 
-        if (StringUtil.isEmpty(phone)){
-            ToastUitl.showShort("请输入电话号码");
+        if (StringUtil.isEmpty(phone)||phone.length()!=11){
+            ToastUitl.showShort("请输入正确的号码");
             return false;
         }
         if (StringUtil.isEmpty(pwd)){
@@ -125,7 +127,11 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             ToastUitl.showShort("两次密码不一致");
             return false;
         }
-//        AppContext.setProperty(Config.Name,name);
+        boolean mobileNO = CheckPhone.isPhone(phone);
+        if (!mobileNO){
+            ToastUitl.showShort("手机号码不匹配");
+            return false;
+        }
         AppContext.setProperty(Config.Phone,phone);
         return true;
     }

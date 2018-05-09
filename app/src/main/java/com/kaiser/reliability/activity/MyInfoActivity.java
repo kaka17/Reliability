@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Pattern;
 
 import okhttp3.RequestBody;
 import rx.Observable;
@@ -250,7 +251,6 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -274,6 +274,7 @@ public class MyInfoActivity extends BaseActivity implements View.OnClickListener
         String overDue = etRecord.getText().toString().trim();
         String salaty = etSalay.getText().toString().trim();
         String education = tvSchool.getText().toString().trim();
+
         Map<String,Object> map=new HashMap<>();
         map.put("userName",name);
         if (!StringUtil.isEmpty(marry)){

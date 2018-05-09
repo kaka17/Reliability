@@ -85,57 +85,57 @@
      </LinearLayout>
 
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/linTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:visibility="visible"
         android:background="@drawable/loan_head_02bg"
-        >
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="最高可以借贷额度"
             android:layout_marginTop="20dp"
-            />
+            android:text="最高可以借贷额度"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="1 00000"
             android:textColor="@color/black"
             android:textSize="36sp"
-            android:text="1 00000"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="借贷1万每天最低仅需1.1元"
             android:textColor="@color/black"
-            android:textSize="14sp"
-            android:text="借贷1万每天最低仅需1.3元"
-            />
+            android:textSize="14sp" />
+
         <TextView
             android:id="@+id/tvLead"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:textColor="@color/whiles"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:background="@drawable/registbg"
-            android:textSize="16dp"
-            android:text="马上借钱"
-            android:layout_marginTop="20dp"
+            android:layout_height="40dp"
             android:layout_marginBottom="20dp"
-            />
+            android:layout_marginLeft="26dp"
+            android:layout_marginRight="26dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/registbg"
+            android:gravity="center"
+            android:text="马上借钱"
+            android:textColor="@color/whiles"
+            android:textSize="16dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/bg_color"
-        />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/bg_color" />
     </LinearLayout>
 
 </LinearLayout>

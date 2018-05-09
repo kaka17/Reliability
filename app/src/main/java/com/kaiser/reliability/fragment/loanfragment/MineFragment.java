@@ -14,6 +14,7 @@ import com.kaiser.reliability.activity.LoginActivity;
 import com.kaiser.reliability.activity.MyInfoActivity;
 import com.kaiser.reliability.activity.RegistActivity;
 import com.kaiser.reliability.base.AppContext;
+import com.kaiser.reliability.base.AppManager;
 import com.kaiser.reliability.base.BaseFragment;
 import com.kaiser.reliability.configs.Config;
 import com.kaiser.reliability.utils.StringUtil;
@@ -82,6 +83,17 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (!StringUtil.isEmpty(AppContext.getProperty(Config.Phone))){
+            tvNickName.setText(AppContext.getProperty(Config.Phone));
+            reLoginOut.setVisibility(View.VISIBLE);
+        }else {
+            reLoginOut.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
     public void onClick(View v) {
 
         switch (v.getId()){
@@ -136,6 +148,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 break;
             case R.id.reLoginOut:
                 AppContext.clearPropertyData();
+                AppManager.getAppManager().AppExit(getActivity(),false);
                 getActivity().finish();
                 break;
 

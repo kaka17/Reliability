@@ -32,7 +32,7 @@
         <com.kaiser.reliability.view.CircleImageView
             android:layout_width="46dp"
             android:layout_height="46dp"
-            android:src="@mipmap/icon"
+            android:src="@mipmap/icon01"
             android:visibility="visible"
             android:scaleType="centerCrop"
             android:layout_marginRight="20dp"
