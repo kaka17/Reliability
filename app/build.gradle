@@ -10,13 +10,44 @@ android {
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         //开启分包模式
         multiDexEnabled = true
     }
-    buildTypes {
+    signingConfigs {
+        debug {
+            storeFile file('../reliability.jks')
+            storePassword 'kaka17'
+            keyAlias 'reliabkey'
+            keyPassword 'kaka17'
+        }
         release {
+            storeFile file('../reliability.jks')
+            storePassword 'kaka17'
+            keyAlias 'reliabkey'
+            keyPassword 'kaka17'
+        }
+    }
+    buildTypes {
+
+        debug {
+
+            signingConfig signingConfigs.debug
             minifyEnabled false
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        develop {
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

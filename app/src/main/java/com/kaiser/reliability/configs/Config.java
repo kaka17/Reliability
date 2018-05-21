@@ -8,6 +8,7 @@ public class Config {
     public static String GPCODE="GPCODE";
     public static String ISLOGINGING="ISLOGINGING";
 
+    public static String IsFirstIn="IsFirstIn";
     //账号
     public static String Name="Name";
     public static String Pwd="Pwd";

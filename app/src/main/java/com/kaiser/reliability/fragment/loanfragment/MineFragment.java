@@ -148,6 +148,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener{
                 break;
             case R.id.reLoginOut:
                 AppContext.clearPropertyData();
+                AppContext.setProperty(Config.IsFirstIn,Config.IsFirstIn);
                 AppManager.getAppManager().AppExit(getActivity(),false);
                 getActivity().finish();
                 break;

@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+-keep class com.github.mikephil.charting.**{*;}
+-keep class com.github.mikephil.charting.data.realm.**{*;}
+-keep class org.greenrobot.greendao.**{*;}
+-dontwarn okio.**

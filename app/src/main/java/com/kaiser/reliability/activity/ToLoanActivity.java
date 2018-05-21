@@ -1,5 +1,6 @@
 package com.kaiser.reliability.activity;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,15 +11,18 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.kaiser.reliability.R;
 import com.kaiser.reliability.api.apiserver.ApiLoad;
+import com.kaiser.reliability.base.AppContext;
 import com.kaiser.reliability.base.BaseActivity;
 import com.kaiser.reliability.baserx.RxManager;
 import com.kaiser.reliability.baserx.RxSchedulers;
 import com.kaiser.reliability.baserx.RxSubscriber;
 import com.kaiser.reliability.bean.BaseBean;
 import com.kaiser.reliability.bean.TabEntity;
+import com.kaiser.reliability.configs.Config;
 import com.kaiser.reliability.fragment.loanfragment.LoanFragment;
 import com.kaiser.reliability.fragment.loanfragment.MineFragment;
 import com.kaiser.reliability.load.bena.Users;
+import com.kaiser.reliability.utils.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +47,10 @@ public class ToLoanActivity extends BaseActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        if (StringUtil.isEmpty(AppContext.getProperty(Config.IsFirstIn))){
+//            startActivity(new Intent(getApplicationContext(),WecomeActivity.class));
+//            finish();
+        }
         super.onCreate(savedInstanceState);
         initFragment(savedInstanceState);
     }
